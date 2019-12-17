@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Kaya: Effective and Convenient Testing Framework for DApps</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/amazeui.min.css') }}"/>
+  <style>
+    .get {
+      background: url("{{ url_for('static', filename='img/bg-star.jpg') }}");
+      background-size:100%;
+      color: #fff;
+      text-align: center;
+      padding: 50px 0;
+      font-size: x-large;
+    }
+
+    .get-title {
+      font-size: 200%;
+      border: 2px solid #fff;
+      padding: 20px;
+      display: inline-block;
+    }
+
+    .get-btn {
+      background: #fff;
+    }
+
+    .detail {
+      background:  url("{{ url_for('static', filename='img/bg-code.jpg') }}");
+      background-size:100%;
+    }
+
+    .code-editor{
+      background: #fff;
+    }
+
+    .detail-h2 {
+      text-align: center;
+      font-size: 150%;
+      margin: 40px 0;
+    }
+
+    .detail-h3 {
+      color: #1f8dd6;
+    }
+
+    .detail-p {
+      color: #7f8c8d;
+    }
+
+    .detail-mb {
+      margin-bottom: 30px;
+    }
+
+    .hope {
+      padding: 50px 0;
+    }
+
+    .hope-img {
+      text-align: center;
+    }
+
+    .hope-hr {
+      border-color: #149C88;
+    }
+
+    .hope-title {
+      text-align: center;
+      font-size: 140%;
+    }
+
+    .about {
+      background: #fff;
+      padding: 40px 0;
+      color: #7f8c8d;
+    }
+
+    .about-color {
+      color: #34495e;
+    }
+
+    .about-title {
+      font-size: 180%;
+      padding: 30px 0 50px 0;
+      text-align: center;
+    }
+
+    .footer p {
+      color: #7f8c8d;
+      margin: 0;
+      padding: 15px 0;
+      text-align: center;
+      background: #2d3e50;
+    }
+
+    .am-container {
+        max-width: 1300px;
+    }
+  </style>
+</head>
+<body>
+
+<script src="{{ url_for('static', filename='js/sample.js') }}"></script>
+<script>
+function usebuysnail() {
+    document.getElementById("solidity_name").value="SnailThrone";
+    document.getElementById("solidity").value="<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<root>\r\n    <item type=\"dict\">\r\n        <name type=\"str\">Buy Snails</name>\r\n        <items type=\"list\">\r\n            <item type=\"dict\">\r\n                <area type=\"list\">\r\n                    <item type=\"dict\">\r\n                        <class-name type=\"str\">card-deck</class-name>\r\n                    </item>\r\n                </area>\r\n                <tag_name type=\"str\">input</tag_name>\r\n                <filter_key type=\"str\">id</filter_key>\r\n                <filter_value type=\"str\">fieldBuy</filter_value>\r\n                <action type=\"str\">insert</action>\r\n                <action_value type=\"str\">5</action_value>\r\n            </item>\r\n            <item type=\"dict\">\r\n                <area type=\"list\">\r\n                    <item type=\"dict\">\r\n                        <class-name type=\"str\">card-deck</class-name>\r\n                    </item>\r\n                </area>\r\n                <tag_name type=\"str\">button</tag_name>\r\n                <filter_key type=\"str\">onclick</filter_key>\r\n                <filter_value type=\"str\">webBuySnail()</filter_value>\r\n                <action type=\"str\">click</action>\r\n                <action_value type=\"str\">This will be used only when action is `insert`</action_value>\r\n                <switch_window type=\"str\">MetaMask Notification</switch_window>\r\n            </item>\r\n        </items>\r\n    </item>\r\n</root>";
+    document.getElementsByName("GOD_TIMER_BOOST+-+1")[0].value="480";
+    document.getElementsByName("GOD_TIMER_INTERVAL+-+1")[0].value="12";
+    document.getElementsByName("GOD_TIMER_START+-+1")[0].value="86400";
+    document.getElementsByName("PHARAOH_REQ_START+-+1")[0].value="40";
+    // document.getElementsByName("SNAIL_REQ_REF.-.1").value("0");
+    document.getElementsByName("TIME_TO_HATCH_1SNAIL+-+1")[0].value="1080000";
+    document.getElementsByName("TOKEN_MAX_BUY+-+1")[0].value="8000000000000000000";
+    document.getElementsByName("TOKEN_PRICE_FLOOR+-+1")[0].value="20000000000000";
+    document.getElementsByName("TOKEN_PRICE_MULT+-+1")[0].value="10000000";
+    // document.getElementsByName("claimedDivs.t_mapping.1").value("0");
+    // document.getElementsByName("claimedDivs.t_mapping.2").value("0");
+    // document.getElementsByName("divsPerSnail.-.1").value("0");
+    // document.getElementsByName("frogPot.-.1").value("0");
+    // document.getElementsByName("gameOwner.-.1").value("0");
+    document.getElementsByName("gameStarted+-+1")[0].value="1";
+    // document.getElementsByName("godPot.-.1").value("0");
+    // document.getElementsByName("godRound.-.1").value("0");
+    document.getElementsByName("maxSnail+-+1")[0].value="100";
+    document.getElementsByName("pharaohReq+-+1")[0].value="40";
+    document.getElementsByName("hatcherySnail+t_mapping+1")[0].value="32919230080242181067158840805774358038101058738";
+    document.getElementsByName("hatcherySnail+t_mapping+2")[0].value="60";
+    // document.getElementsByName("pharaoh.-.1").value("0");
+    // document.getElementsByName("snailPot.-.1").value("0");
+    
+
+
+}
+</script>
+
+
+<div class="get">
+  <div class="am-g">
+    <div class="am-u-lg-12">
+      <h1 class="get-title">Kaya</h1>
+
+      <p>
+        Kaya: Effective and Convenient Testing Framework for DApps
+      </p>
+      <p>
+        <a href="#" class="am-btn am-btn-default am-round" target="_blank">Github <i class="am-icon-github am-icon-sm"></i></a>
+        &nbsp;&nbsp;
+        <a href="#" class="am-btn am-btn-default am-round" target="_blank">Youtube <i class="am-icon-youtube am-icon-sm"></i></a>
+      </p>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="detail">
+  <div class="am-g am-container">
+    <div class="am-u-lg-12 am-margin">
+
+      <div class="am-g code-editor">
+        <!-- content start -->
+        <div class="admin-content">
+          <div class="admin-content-body">
+
+            
+            <div class="am-tab-panel am-active" id="tab_solidity">
+                <form action="/kaya/define_parameter" method="post" class="am-form">
+                    <div class="am-u-sm-12 am-u-md-12 am-margin-top">
+                        <p><strong><legend>Phase-2: Input Web Events and Pre-state Settings</legend></strong></p>
+                    </div>
+
+                    <div class="am-u-sm-12 am-u-md-12">
+                        <div class="am-u-sm-2 am-u-md-2">
+                            <p>
+                                <strong>Contract Name</strong> 
+                            </p>
+                        </div>
+                        <div class="am-u-sm-10 am-u-md-10">
+                            <button type="button" class="am-btn am-btn-primary am-btn-md am-round" onclick=usebuysnail() id="demo_button"><strong>Demo</strong>: Test the BuySnails Fucntion</button>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-12">
+                        <textarea rows="1" placeholder="Contract Name" id="solidity_name" name="contract_name" value="{{ contract_name }}"></textarea>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-12 am-margin-top">
+                        <div class="am-u-sm-2 am-u-md-2">
+                            <p><strong>Web Events</strong></p>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-12">
+                        <textarea rows="15" placeholder="Web Events" id="solidity" name="selenium_setting"></textarea>
+                    </div>
+
+
+                    <div class="am-u-sm-12 am-u-md-12 am-margin-top">
+                        <table class="am-table am-table-striped am-table-hover">
+                            <tr>
+                                <td>Variable Name</td>
+                                <td>Outer Type</td>
+                                <td>Outer Size</td>
+                                <td>Variable Type</td>
+                                <td>Variable Size</td>
+                                <td>Variable Value</td>
+                            </tr>
+                            {% for param in param_list %}
+                                {% for i in range(param.depth) %}
+                                    {% if i > 0 %}
+                                        {% with param = param["deeper_dict"] %}
+                                        <tr>
+                                            <td>{{ param.param_name }}</td>
+                                            <td>{{ param.outer_param_type }}</td>
+                                            <td>{{ param.outer_param_size }}</td>
+                                            <td>{{ param.param_type }}</td>
+                                            <td>{{ param.type_size }}</td>
+                                            <td><input name="{{ param.r_param_name }}" value="{{ param.default_value }}"></td>
+                                        </tr>
+                                        {% endwith %}
+                                    {% else %}
+                                        <tr>
+                                            <td>{{ param.param_name }}</td>
+                                            <td>{{ param.outer_param_type }}</td>
+                                            <td>{{ param.outer_param_size }}</td>
+                                            <td>{{ param.param_type }}</td>
+                                            <td>{{ param.type_size }}</td>
+                                            <td><input name="{{ param.r_param_name }}" value="{{ param.default_value }}"></td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-12 am-margin-top" align="center">
+                        <button type="submit" class="am-btn am-btn-primary am-btn-xl am-round" id="start_button_1"><strong>Click HERE to Start Testing!</strong></button>
+                    </div>
+                </form>
+            </div>
+
+          </div>
+
+        </div>
+        <!-- content end -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<footer class="footer">
+  <p>Powered by <a href="http://amazeui.org/" target="_blank">AmazeUI</a></p>
+</footer>
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<!--<![endif]-->
+<script src="{{ url_for('static', filename='js/amazeui.min.js') }}"></script>
+</body>
+</html>

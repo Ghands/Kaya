@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Kaya: Effective and Convenient Testing Framework for DApps</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/amazeui.min.css') }}"/>
+  <style>
+    .get {
+      background: url("{{ url_for('static', filename='img/bg-star.jpg') }}");
+      background-size:100%;
+      color: #fff;
+      text-align: center;
+      padding: 50px 0;
+      font-size: x-large;
+    }
+
+    .get-title {
+      font-size: 200%;
+      border: 2px solid #fff;
+      padding: 20px;
+      display: inline-block;
+    }
+
+    .get-btn {
+      background: #fff;
+    }
+
+    .detail {
+      background:  url("{{ url_for('static', filename='img/bg-code.jpg') }}");
+      background-size:100%;
+    }
+
+    .code-editor{
+      background: #fff;
+    }
+
+    .detail-h2 {
+      text-align: center;
+      font-size: 150%;
+      margin: 40px 0;
+    }
+
+    .detail-h3 {
+      color: #1f8dd6;
+    }
+
+    .detail-p {
+      color: #7f8c8d;
+    }
+
+    .detail-mb {
+      margin-bottom: 30px;
+    }
+
+    .hope {
+      padding: 50px 0;
+    }
+
+    .hope-img {
+      text-align: center;
+    }
+
+    .hope-hr {
+      border-color: #149C88;
+    }
+
+    .hope-title {
+      text-align: center;
+      font-size: 140%;
+    }
+
+    .about {
+      background: #fff;
+      padding: 40px 0;
+      color: #7f8c8d;
+    }
+
+    .about-color {
+      color: #34495e;
+    }
+
+    .about-title {
+      font-size: 180%;
+      padding: 30px 0 50px 0;
+      text-align: center;
+    }
+
+    .footer p {
+      color: #7f8c8d;
+      margin: 0;
+      padding: 15px 0;
+      text-align: center;
+      background: #2d3e50;
+    }
+
+    .am-container {
+        max-width: 1300px;
+    }
+  </style>
+</head>
+<body>
+
+
+
+<div class="get">
+  <div class="am-g">
+    <div class="am-u-lg-12">
+      <h1 class="get-title">Kaya</h1>
+
+      <p>
+        Kaya: Effective and Convenient Testing Framework for DApps
+      </p>
+      <p>
+        <a href="#" class="am-btn am-btn-default am-round" target="_blank">Github <i class="am-icon-github am-icon-sm"></i></a>
+        &nbsp;&nbsp;
+        <a href="#" class="am-btn am-btn-default am-round" target="_blank">Youtube <i class="am-icon-youtube am-icon-sm"></i></a>
+      </p>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="detail">
+  <div class="am-g am-container">
+    <div class="am-u-lg-12 am-margin">
+
+      <div class="am-g code-editor">
+        <!-- content start -->
+        <div class="admin-content">
+          <div class="admin-content-body">
+
+            
+            <div class="am-tab-panel am-active" id="tab_solidity">
+                    <div class="am-u-sm-12 am-u-md-12 am-margin-top">
+                        <p><strong><legend>Final Results: Changed Variables in Smart Contract</legend></strong></p>
+                    </div>
+
+                    <div class="am-u-sm-12 am-u-md-12 am-margin-top">
+                        <table class="am-table am-table-striped am-table-hover">
+                            <!-- <tr><legend>The changed variables after performing test cases are shown below</legend></tr> -->
+                            <tr>
+                                <td><strong>Name</strong></td>
+                                <td><strong>Original Value</strong></td>
+                                <td><strong>Changed Value</strong></td>
+                            </tr>
+                            {% for single_behavior in behavior_list %}
+                                <tr> <td colspan="3" align="center"><strong>{{ single_behavior.behavior_name }}</strong></td></tr>
+                                {% for key, value in single_behavior.variables.items() %}
+                                    <tr>
+                                        <td>{{ key }}</td>
+                                        <td>{{ value["source"] }}</td>
+                                        <td>{{ value["now"] }}</td>
+                                    </tr>
+                                {% endfor %}
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-12 am-margin-top" align="center">
+                        <a href="/kaya/start" class="am-btn am-btn-primary am-btn-xl am-round"><strong>Go Back to Start Page</strong></a>
+                    </div>
+            </div>
+
+          </div>
+
+        </div>
+        <!-- content end -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<footer class="footer">
+  <p>Powered by <a href="http://amazeui.org/" target="_blank">AmazeUI</a></p>
+</footer>
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<!--<![endif]-->
+<script src="{{ url_for('static', filename='js/amazeui.min.js') }}"></script>
+</body>
+</html>
