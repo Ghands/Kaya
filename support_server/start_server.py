@@ -11,20 +11,10 @@ from PreState import run as get_prestate
 from PreState import find_params as get_params
 from PreState import compile_solidity_runtime as get_runtime
 from config import temp_prestate_dir, temp_source_dir, temp_param_dir
+from utils import transfer_address_to_parameter, convert_list2map
 
 
 app = Flask(__name__)
-
-
-def transfer_address_to_parameter(storage_dict, corresponding):
-    # print(corresponding)
-    return_dict = dict()
-    for key in storage_dict:
-        # print("corresponding: ", corresponding)
-        # print("key: ", key)
-        return_dict[corresponding[int(key, 16)]] = int(storage_dict[key], 16)
-
-    return return_dict
 
 
 @app.route("/evm/params", methods=["POST"], strict_slashes=False)
@@ -33,17 +23,7 @@ def find_params():
     contract_name = request.form.get("contract_name")
     contracts_params_dict, rely_code_p, rely_code_s = get_params(contract_src_code, contract_name)
 
-    # print(contracts_params_dict)
-    # print(rely_code_p)
-    # print(rely_code_s)
     return jsonify({"contracts_params": contracts_params_dict, "rely_code_p": rely_code_p, "rely_code_s": rely_code_s})
-
-
-def convert_list2map(variable_lists):
-    return_dict = dict()
-    for single_variable in variable_lists:
-        return_dict[single_variable["name"]] = single_variable["value"]
-    return return_dict
 
 
 @app.route("/evm/cmd-running", methods=["POST"], strict_slashes=False)
@@ -67,10 +47,9 @@ def check_cmd_storage():
         single_transaction = context_json["Transactions"][single_tx_key]
 
         tx_result_string = os.popen("evm --sender {sender} --receiver {receiver} --input {input} --code {code} --value {value} --prestate {prestate} --dump run".format(
-            sender=single_transaction["Sender"], receiver="0x0000000000000000000000007265636569766572", input=single_transaction["data"], value="4000000000000000000",#value=single_transaction["total-fee-eth"], 
+            sender=single_transaction["Sender"], receiver="0x0000000000000000000000007265636569766572", input=single_transaction["data"], value=single_transaction["total-fee-eth"], 
             code=runtime_code, prestate=temp_state_filename)).read().strip()
 
-        # print(tx_result_string)
         json_string = tx_result_string[:tx_result_string.rindex("}") + 1]
 
         tx_result[single_tx_key] = transfer_address_to_parameter(json.loads(json_string)["accounts"]["0x0000000000000000000000007265636569766572"]["storage"], corresponding)
@@ -126,19 +105,10 @@ def check_storage():
             sender=single_transaction["Sender"], receiver="0x0000000000000000000000007265636569766572", input=single_transaction["data"], value="4000000000000000000",#value=single_transaction["total-fee-eth"], 
             code=runtime_code, prestate=temp_state_filename)).read().strip()
 
-        # json_string = "".join(tx_result_string.split("\n")[:-1]) if tx_result_string[-1] != "}" else tx_result_string
         # print(tx_result_string)
         json_string = tx_result_string[:tx_result_string.rindex("}") + 1]
-        # print(json_string)
-
-        # try:
-        #     tx_result[single_tx_key] = transfer_address_to_parameter(json.loads(json_string)["accounts"]["0x0000000000000000000000007265636569766572"]["storage"], corresponding)
-        # except KeyError:
-        #     raise ValueError("You have not change the value of any parameters contrained in this smart contract")
 
         tx_result[single_tx_key] = transfer_address_to_parameter(json.loads(json_string)["accounts"]["0x0000000000000000000000007265636569766572"]["storage"], corresponding)
-
-        # print(tx_result)
 
     return jsonify(tx_result)
 

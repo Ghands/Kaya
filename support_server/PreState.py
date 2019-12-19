@@ -8,7 +8,7 @@ import functools
 
 from copy import deepcopy
 
-from utils import solc_gen_storage_pattern, solc_storage_command, solc_code_command, get_contract_name, ethereum_hash, check_hex_odd
+from utils import solc_gen_storage_pattern, solc_storage_command, solc_code_command, compare_contract_name, ethereum_hash, check_hex_odd
 from config import temp_storage_dir, temp_source_dir, temp_code_dir, temp_param_dir, temp_prestate_dir
 
 
@@ -116,7 +116,6 @@ def get_contract_params(compiled_json):
     """
     contracts_params_dict = dict()
 
-    # print(compiled_json)
     contracts_list = compiled_json["contracts"]["file"].values()
 
     for single_contract in contracts_list:
@@ -125,7 +124,7 @@ def get_contract_params(compiled_json):
         
         params_list = single_contract["storageLayout"]["storage"]
         for single_param in params_list:
-            contract_name = get_contract_name(contract_name, single_param.pop("contract"))
+            contract_name = compare_contract_name(contract_name, single_param.pop("contract"))
             temp_contract_params["params"][single_param.pop("label")] = deepcopy(single_param)
 
         if single_contract["storageLayout"]["types"] is not None:
@@ -238,7 +237,6 @@ def get_true_position(param_path, params_dict, types_dict):
         if params_dict[single_element]["label"] == origin_label:
             origin_type_dict = params_dict[single_element]
             break
-    #print(param_path)
     if origin_type_dict is None:
         raise ValueError("There is no corresponding parameter in this smart contract!")
     
@@ -246,7 +244,6 @@ def get_true_position(param_path, params_dict, types_dict):
 
     return slot, offset, bottom_type
 
-# 用户定义 {"mortal": [{"name": "s[1].b", "path": [t, 0], "value": 10}, {}]}
 
 def add_offset(sorted_sub_param_dict):
     """ Add variables accross the offset
@@ -257,7 +254,6 @@ def add_offset(sorted_sub_param_dict):
     Return:
         The name of all variables in the same slot and the final combined value of these variables.
     """
-    # former_offset = sorted_sub_param_dict[0]
     null_value = 0
     former_offset_value = 0
     former_hex_value = null_value.to_bytes(former_offset_value, "big")
@@ -266,18 +262,14 @@ def add_offset(sorted_sub_param_dict):
         if now_offset[1]["offset"] < former_offset_value:
             raise ValueError("There is a error in offset calculation, maybe a bug!")
         elif now_offset[1]["offset"] > former_offset_value:
-            # former_hex_value += null_value.to_bytes(now_offset[1]["offset"] - former_offset_value, "big")
             former_hex_value = null_value.to_bytes(now_offset[1]["offset"] - former_offset_value, "big") + former_hex_value
             former_offset_value = now_offset[1]["offset"]
-        # former_hex_value += now_offset[1]["value"].to_bytes(int(now_offset[1]["type"]["numberOfBytes"]), "big")
-        print(now_offset)
         former_hex_value = now_offset[1]["value"].to_bytes(int(now_offset[1]["type"]["numberOfBytes"]), "big") + former_hex_value
         former_offset_value += int(now_offset[1]["type"]["numberOfBytes"])
 
     if former_offset_value > 32:
         raise ValueError("The length of final value has exceeded 256, maybe a bug!")
     if former_offset_value < 32:
-        # former_hex_value += null_value.to_bytes(32 - former_offset_value, "big")
         former_hex_value = null_value.to_bytes(32 - former_offset_value, "big") + former_hex_value
 
     return functools.reduce(lambda x, y: x + "|" + y, [item[0] for item in sorted_sub_param_dict]), former_hex_value
@@ -312,7 +304,6 @@ def gen_storage(user_param_dict, types_dict, slot_more_than_one, slot_equal_one,
         storage[check_hex_odd(hex(slot_num))] = "0x" + final_value.hex()
         corresponding[slot_num] = all_param_name
 
-    # print(storage)
     return storage, corresponding
 
 
@@ -362,8 +353,7 @@ def get_contracts_status(user_commit, contracts_params_dict):
 
         contracts_list.append(({
             "balance": "1000000000000000000000000000",
-            # "code": "0x" + compiled_json["contracts"]["runtime-code"],
-            "nonce": hex(0), # 需要修改
+            "nonce": hex(0),
             "storage": storage
         }, corresponding))
     
@@ -388,11 +378,6 @@ def gen_prestate(sender_info, contracts_info=None):
 
     state_dict["alloc"]["0x0000000000000000000000007265636569766572"] = contracts_info[0][0]
 
-    # if contracts_info is not None:
-    #     for i in contracts_info:
-    #         state_dict['alloc']["0x000000000000000000000000000000000000000%x"%index]=i
-    #         index=index+1
-
     state_dict['alloc'][sender_info["address"]]={"balance": sender_info["balance"]}
     state_dict['coinbase']="0x0000000000000000000000000000000000000000"
     state_dict['config']={"homesteadBlock": 0, "daoForkBlock": 0, "eip150Block": 0, "eip155Block": 0, "eip158Block": 0, "byzantiumBlock": 0, "constantinopleBlock": 0, "petersburgBlock": 0, "istanbulBlock": 0}
@@ -404,7 +389,6 @@ def gen_prestate(sender_info, contracts_info=None):
     state_dict['timestamp']='0x00'
     state_dict['number']='0x01'
     
-    # pre_state = json.dumps(state_dict)
     return state_dict, contracts_info[0][1]
 
 
@@ -460,25 +444,3 @@ def run(sender_info, temp_param_filename, user_commit):
     else:
         contracts_info = get_contracts_status(user_commit, contracts_params_dict)
         return gen_prestate(sender_info, contracts_info)
-
-
-if __name__ == "__main__":
-    _, temp_param_filename, _ = find_params(open("content.sol", "r").read(), "SnailThrone")
-
-    pre_state = run(
-        {"address": "0x0000000000000000000000000000000000000001", "balance": "0x10000"},
-        temp_param_filename,
-        {"SnailThrone": [{"name":"GOD_TIMER_INTERVAL","path":["GOD_TIMER_INTERVAL"],"value":12},{"name":"pharaohReq","path":["pharaohReq"],"value":40},{"name":"TOKEN_MAX_BUY","path":["TOKEN_MAX_BUY"],"value":4000000000000000000},{"name":"TOKEN_PRICE_MULT","path":["TOKEN_PRICE_MULT"],"value":10000000},{"name":"maxSnail","path":["maxSnail"],"value":100},{"name":"TOKEN_PRICE_FLOOR","path":["TOKEN_PRICE_FLOOR"],"value":20000000000000},{"name":"TIME_TO_HATCH_1SNAIL","path":["TIME_TO_HATCH_1SNAIL"],"value":1080000},{"name":"GOD_TIMER_BOOST","path":["GOD_TIMER_BOOST"],"value":480},{"name":"PHARAOH_REQ_START","path":["PHARAOH_REQ_START"],"value":40},{"name":"GOD_TIMER_START","path":["GOD_TIMER_START"],"value":86400},{"name":"lastClaim","path":["lastClaim"],"value":0},{"name":"gameStarted","path":["gameStarted"],"value":1},{"name":"hatcherySnail","path":["hatcherySnail",1],"value":1}]}
-
-    )
-
-    print(pre_state)
-
-    with open("test_pre_state.txt", "w") as fopen:
-        fopen.write(json.dumps(pre_state))
-        fopen.flush()
-        fopen.close()
-
-    evm_running = os.popen("evm --sender {sender} --receiver {receiver} --input {input} --value 3 --prestate {prestate} --dump run".format(sender="0x0000000000000000000000000000000000000001", input="59423a7f0000000000000000000000000000000000000000000000000000000000000000", prestate="test_pre_state.txt", receiver="0x0000000000000000000000007265636569766572"))
-
-    print(evm_running.read())
