@@ -1,3 +1,2 @@
 selenium==3.141.0
-pysha3==1.0.2
 pyperclip==1.7.0

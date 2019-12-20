@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <setted_params type="dict">
+        <SnailThrone type="list">
+            <item type="dict">
+                <name type="str">GOD_TIMER_BOOST</name>
+                <path type="list">
+                    <item type="str">GOD_TIMER_BOOST</item>
+                </path>
+                <value type="int">480</value>
+            </item>
+            <item type="dict">
+                <name type="str">GOD_TIMER_INTERVAL</name>
+                <path type="list">
+                    <item type="str">GOD_TIMER_INTERVAL</item>
+                </path>
+                <value type="int">12</value>
+            </item>
+            <item type="dict">
+                <name type="str">GOD_TIMER_START</name>
+                <path type="list">
+                    <item type="str">GOD_TIMER_START</item>
+                </path>
+                <value type="int">86400</value>
+            </item>
+            <item type="dict">
+                <name type="str">PHARAOH_REQ_START</name>
+                <path type="list">
+                    <item type="str">PHARAOH_REQ_START</item>
+                </path>
+                <value type="int">40</value>
+            </item>
+            <item type="dict">
+                <name type="str">SNAIL_REQ_REF</name>
+                <path type="list">
+                    <item type="str">SNAIL_REQ_REF</item>
+                </path>
+                <value type="int">0</value>
+            </item>
+            <item type="dict">
+                <name type="str">TIME_TO_HATCH_1SNAIL</name>
+                <path type="list">
+                    <item type="str">TIME_TO_HATCH_1SNAIL</item>
+                </path>
+                <value type="int">1080000</value>
+            </item>
+            <item type="dict">
+                <name type="str">TOKEN_MAX_BUY</name>
+                <path type="list">
+                    <item type="str">TOKEN_MAX_BUY</item>
+                </path>
+                <value type="int">8000000000000000000</value>
+            </item>
+            <item type="dict">
+                <name type="str">TOKEN_PRICE_FLOOR</name>
+                <path type="list">
+                    <item type="str">TOKEN_PRICE_FLOOR</item>
+                </path>
+                <value type="int">20000000000000</value>
+            </item>
+            <item type="dict">
+                <name type="str">TOKEN_PRICE_MULT</name>
+                <path type="list">
+                    <item type="str">TOKEN_PRICE_MULT</item>
+                </path>
+                <value type="int">10000000</value>
+            </item>
+            <item type="dict">
+                <name type="str">claimedDivs[0]</name>
+                <path type="list">
+                    <item type="str">claimedDivs</item>
+                    <item type="str">0</item>
+                </path>
+                <value type="int">0</value>
+            </item>
+            <item type="dict">
+                <name type="str">divsPerSnail</name>
+                <path type="list">
+                    <item type="str">divsPerSnail</item>
+                </path>
+                <value type="int">0</value>
+            </item>
+            <item type="dict">
+                <name type="str">frogPot</name>
+                <path type="list">
+                    <item type="str">frogPot</item>
+                </path>
+                <value type="int">0</value>
+            </item>
+            <item type="dict">
+                <name type="str">gameOwner</name>
+                <path type="list">
+                    <item type="str">gameOwner</item>
+                </path>
+                <value type="int">0</value>
+            </item>
+            <item type="dict">
+                <name type="str">gameStarted</name>
+                <path type="list">
+                    <item type="str">gameStarted</item>
+                </path>
+                <value type="int">1</value>
+            </item>
+            <item type="dict">
+                <name type="str">godPot</name>
+                <path type="list">
+                    <item type="str">godPot</item>
+                </path>
+                <value type="int">0</value>
+            </item>
+            <item type="dict">
+                <name type="str">godRound</name>
+                <path type="list">
+                    <item type="str">godRound</item>
+                </path>
+                <value type="int">0</value>
+            </item>
+            <item type="dict">
+                <name type="str">godTimer</name>
+                <path type="list">
+                    <item type="str">godTimer</item>
+                </path>
+                <value type="int">0</value>
+            </item>
+            <item type="dict">
+                <name type="str">hatcherySnail[32919230080242181067158840805774358038101058738]</name>
+                <path type="list">
+                    <item type="str">hatcherySnail</item>
+                    <item type="str">32919230080242181067158840805774358038101058738</item>
+                </path>
+                <value type="int">60</value>
+            </item>
+            <item type="dict">
+                <name type="str">lastClaim</name>
+                <path type="list">
+                    <item type="str">lastClaim</item>
+                </path>
+                <value type="int">0</value>
+            </item>
+            <item type="dict">
+                <name type="str">lastHatch[0]</name>
+                <path type="list">
+                    <item type="str">lastHatch</item>
+                    <item type="str">0</item>
+                </path>
+                <value type="int">0</value>
+            </item>
+            <item type="dict">
+                <name type="str">maxSnail</name>
+                <path type="list">
+                    <item type="str">maxSnail</item>
+                </path>
+                <value type="int">100</value>
+            </item>
+            <item type="dict">
+                <name type="str">pharaoh</name>
+                <path type="list">
+                    <item type="str">pharaoh</item>
+                </path>
+                <value type="int">0</value>
+            </item>
+            <item type="dict">
+                <name type="str">pharaohReq</name>
+                <path type="list">
+                    <item type="str">pharaohReq</item>
+                </path>
+                <value type="int">40</value>
+            </item>
+            <item type="dict">
+                <name type="str">playerEarnings[0]</name>
+                <path type="list">
+                    <item type="str">playerEarnings</item>
+                    <item type="str">0</item>
+                </path>
+                <value type="int">0</value>
+            </item>
+            <item type="dict">
+                <name type="str">snailPot</name>
+                <path type="list">
+                    <item type="str">snailPot</item>
+                </path>
+                <value type="int">0</value>
+            </item>
+        </SnailThrone>
+    </setted_params>
+    <Transactions type="list">
+        <item type="dict">
+            <name type="str">Buy Snails</name>
+            <url type="str">https://snailking.github.io/snailthrone/game?utm_source=StateOfTheDApps</url>
+            <items type="list">
+                <item type="dict">
+                    <area type="list">
+                        <item type="dict">
+                            <class-name type="str">card-deck</class-name>
+                        </item>
+                    </area>
+                    <tag_name type="str">input</tag_name>
+                    <filter_key type="str">id</filter_key>
+                    <filter_value type="str">fieldBuy</filter_value>
+                    <action type="str">insert</action>
+                    <action_value type="str">5</action_value>
+                </item>
+                <item type="dict">
+                    <area type="list">
+                        <item type="dict">
+                            <class-name type="str">card-deck</class-name>
+                        </item>
+                    </area>
+                    <tag_name type="str">button</tag_name>
+                    <filter_key type="str">onclick</filter_key>
+                    <filter_value type="str">webBuySnail()</filter_value>
+                    <action type="str">click</action>
+                    <action_value type="str">This will be used only when action is `insert`</action_value>
+                    <switch_window type="str">MetaMask Notification</switch_window>
+                </item>
+            </items>
+        </item>
+    </Transactions>
+    <sender_info type="dict">
+        <address type="str">0x05C4263A7B5B2500c71C8873F4FAFF659E6f64B2</address>
+        <balance type="str">1000000000000000000000000000</balance>
+    </sender_info>
+</root>

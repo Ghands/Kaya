@@ -1,0 +1,61 @@
+#! /usr/bin/python3
+# coding:utf-8 -*-
+
+import sys
+sys.path.append("./middle_server")
+
+import argparse
+import requests
+import json
+
+import xml.etree.cElementTree as ET
+
+from config import server_host
+from utils import search_for_tree
+from web_handler import run_web_crawler
+from middle_server import convert_list2map
+
+
+def get_params(contract_name, contract_src_filename):
+    contract_src_code = open(contract_src_filename, "r").read()
+    data = {
+        "contract_src_code": contract_src_code,
+        "contract_name": contract_name
+    }
+    variables_dict = requests.post("http://%s/evm/params" % server_host, data=data).json()["contracts_params"]["file:%s" % contract_name]
+
+    print(variables_dict)
+
+
+def perform_test_cases(contract_name, contract_source_filename, kaya_source_filename):
+    contract_src_code = open(contract_source_filename, "r").read()
+    kaya_source_code = open(kaya_source_filename, "r").read()
+
+    kaya_source = search_for_tree(ET.fromstring(kaya_source_code), dict())
+    kaya_source["Transactions"] = run_web_crawler(kaya_source["Transactions"])
+
+    data = {
+        "contract_src_code": contract_src_code,
+        "context": json.dumps(kaya_source),
+        "contract_name": contract_name
+    }
+
+    r = requests.post("http://%s/evm/cmd-running" % server_host, data=data).json()
+
+    print(r)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("behavior", type=str, help="Indicate the behavior you want kaya to do, support `var` and `case`.")
+    parser.add_argument("-n", "--name", type=str, help="The name of the smart contract the DAPP used.")
+    parser.add_argument("-s", "--source", type=str, help="The name of file you want to input.")
+    parser.add_argument("-d", "--dbdl", type=str, help="The name of DBDL file")
+
+    args = parser.parse_args()
+
+    if args.behavior == "var":
+        get_params(args.name, args.source)
+    elif args.behavior == "case":
+        perform_test_cases(args.name, args.source, args.dbdl)
