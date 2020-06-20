@@ -58,7 +58,7 @@ Testers can use Kaya through browser to visit Tester Interface or use command li
 Tester Interface is a web interface designed for primary testers. If users test their DApps through it, users should input the contract name and contract source code first.
 ![Kaya Start Webpage](./images/kaya_start.png)
 
-Then, Kaya will jump to the second page, users can get all the variables which can be set initial values. If necessary, users can input the web events with DBDL language (This language will be introduced in next section), the contract name is also needed.
+Then, Kaya will jump to the second page, users can get all the variables which can be set initial values. If necessary, users can input the web events with the setting format defined in Kaya, the contract name is also needed.
 ![Input web events and initial values](./images/kaya_second.png)
 
 Last, Kaya will output the variables whose value has been changed. There are following situations:
@@ -84,15 +84,15 @@ To perform test cases, you can use following command:
 ```shell
 ./kaya_cmd -n SnailThrone -s content.sol -d test_SnailThrone.dbdl
 ```
-The `test_SnailThrone.dbdl` is the file contains the test cases written with DBDL language.
+The `test_SnailThrone.dbdl` is the file contains the test case setting.
 
-## DApp Behavior Description Language (DBDL)
+## Kaya Test Case Setting
 
-DBDL language is created for writing test cases conveniently in Kaya. It is flexible enough to set variables with initial values, add user behaviors, and user information. These three parts are elements in `root`. A full example can be seen in file [practical_case.dbdl](./practical_case.dbdl).
+Kaya Test Case Setting is created for writing test cases conveniently in Kaya. It is flexible enough to set variables with initial values, add user behaviors, and user information. These three parts are elements in `root`. A full example can be seen in file [practical_case.dbdl](./practical_case.dbdl).
 
 ### User Behaviors
 
-For user behavior, DBDL supports range focus, value filtering, and action execution.
+For user behavior, setting supports range focus, value filtering, and action execution.
 
 An example of user behavior is the following:
 ```xml
@@ -161,7 +161,7 @@ For `action`, It has three values to choose:
 
 If tag `switch_window` exists in this action, Kaya will jump to the window whose name equals to the value after executing other steps.
 
-Now, we can understand the listed DBDL code: 
+Now, we can understand the listed setting: 
 1. The submitted transactions are "Buy Snail" and None.
 2. In action "Buy Snail", perform the first action.
    1. Find a element whose class name is "card-deck"
@@ -176,7 +176,7 @@ Now, we can understand the listed DBDL code:
 
 ### Set variables with initial values
 
-With DBDL, testers can easily initialize the value of each variable. Following is an example:
+With this setting, testers can easily initialize the value of each variable. Following is an example:
 ```xml
 <setted_params type="dict">
     <SnailThrone type="list">
@@ -209,7 +209,7 @@ The element in this list is `item` with type `dict`. And deeper elements are `na
 
 ### User information
 
-The information of the account in Blockchain can also be set with DBDL:
+The information of the account in Blockchain can also be set with setting:
 ```xml
 <sender_info type="dict">
     <address type="str">0x05C4263A7B5B2500c71C8873F4FAFF659E6f64B2</address>
